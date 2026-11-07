@@ -1,0 +1,402 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* ── BACKGROUND: deep tech-dark with subtle cool-green undertone ── */
+    --background-50: 0.97 0.006 160;
+    --background-100: 0.93 0.007 160;
+    --background-200: 0.87 0.008 160;
+    --background-300: 0.80 0.008 160;
+    --background-400: 0.70 0.008 160;
+    --background-500: 0.60 0.008 160;
+    --background-600: 0.50 0.008 160;
+    --background-700: 0.40 0.008 160;
+    --background-800: 0.30 0.008 160;
+    --background-900: 0.20 0.008 160;
+    --background-950: 0.10 0.008 160;
+
+    /* ── PRIMARY: emerald-teal — tech, circuit, HUD ── */
+    --primary-50: 0.96 0.04 172;
+    --primary-100: 0.90 0.06 172;
+    --primary-200: 0.84 0.10 170;
+    --primary-300: 0.76 0.13 168;
+    --primary-400: 0.68 0.16 166;
+    --primary-500: 0.60 0.17 164;
+    --primary-600: 0.52 0.15 164;
+    --primary-700: 0.44 0.13 164;
+    --primary-800: 0.36 0.11 164;
+    --primary-900: 0.28 0.09 164;
+    --primary-950: 0.20 0.07 164;
+
+    /* ── ACCENT: electric lime — future pop, neon energy ── */
+    --accent-50: 0.97 0.06 132;
+    --accent-100: 0.92 0.09 130;
+    --accent-200: 0.85 0.12 128;
+    --accent-300: 0.78 0.14 126;
+    --accent-400: 0.70 0.16 124;
+    --accent-500: 0.62 0.17 122;
+    --accent-600: 0.54 0.15 122;
+    --accent-700: 0.46 0.13 122;
+    --accent-800: 0.38 0.11 122;
+    --accent-900: 0.30 0.09 122;
+    --accent-950: 0.22 0.07 122;
+
+    /* ── SECONDARY: cool silver metallic — sophistication ── */
+    --secondary-50: 0.97 0.003 220;
+    --secondary-100: 0.92 0.004 220;
+    --secondary-200: 0.86 0.005 220;
+    --secondary-300: 0.78 0.005 220;
+    --secondary-400: 0.68 0.006 220;
+    --secondary-500: 0.58 0.006 220;
+    --secondary-600: 0.48 0.006 220;
+    --secondary-700: 0.40 0.006 220;
+    --secondary-800: 0.30 0.006 220;
+    --secondary-900: 0.22 0.005 220;
+    --secondary-950: 0.15 0.004 220;
+
+    /* ── FOREGROUND: clean readable grays ── */
+    --foreground-50: 0.98 0.001 0;
+    --foreground-100: 0.94 0.001 0;
+    --foreground-200: 0.88 0.001 0;
+    --foreground-300: 0.80 0.001 0;
+    --foreground-400: 0.70 0.001 0;
+    --foreground-500: 0.60 0.001 0;
+    --foreground-600: 0.50 0.001 0;
+    --foreground-700: 0.40 0.001 0;
+    --foreground-800: 0.30 0.001 0;
+    --foreground-900: 0.20 0.001 0;
+    --foreground-950: 0.10 0.001 0;
+
+    /* ── TYPOGRAPHY: geometric modern + clean body ── */
+    --font-heading: 'Space Grotesk', sans-serif;
+    --font-body: 'Inter', sans-serif;
+    --font-label: 'Inter', sans-serif;
+  }
+
+  body {
+    font-family: var(--font-body);
+    background-color: oklch(var(--background-950));
+    color: oklch(var(--foreground-50));
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading);
+  }
+}
+
+@layer components {
+  .video-responsive {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .video-mobile {
+    display: block;
+  }
+
+  .video-tablet-landscape,
+  .video-desktop {
+    display: none;
+  }
+
+  @media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
+    .video-mobile {
+      display: none;
+    }
+    .video-tablet-landscape {
+      display: block;
+    }
+  }
+
+  @media (min-width: 1025px) {
+    .video-mobile,
+    .video-tablet-landscape {
+      display: none;
+    }
+    .video-desktop {
+      display: block;
+    }
+  }
+}
+
+/* ====== CONTAINER 9:16 PARA VIDEO DE CELULAR ====== */
+/* Video 1080x1920 = proporção 9:16. O container mantém essa proporção
+   exata, centralizado na tela. O vídeo dentro usa object-fit: cover
+   mas como o container tem a mesma proporção do vídeo, nada é cortado.
+*/
+.video-9-16-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  max-width: calc(100dvh * 9 / 16);
+  max-height: calc(100dvw * 16 / 9);
+  background: black;
+  overflow: hidden;
+}
+
+/* ====== FUNDO ESTÚDIO ESCURO (piso reflexivo) ====== */
+.bg-studio {
+  background:
+    radial-gradient(ellipse 80% 50% at 50% 30%, #151515 0%, #0a0a0a 60%, #060606 100%);
+  position: relative;
+}
+.bg-studio::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 45%;
+  background:
+    linear-gradient(to top, rgba(8,8,12,0.95) 0%, rgba(12,12,18,0.6) 40%, transparent 100%);
+}
+.bg-studio::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 25%;
+  background:
+    radial-gradient(ellipse 60% 30% at 50% 100%, rgba(255,255,255,0.04) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+/* ====== BOTÃO CROMADO / VIDRO ESPELHADO ====== */
+.chrome-btn {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 16px 28px;
+  border-radius: 9999px;
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: #f0f0f0;
+  letter-spacing: 0.02em;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.6);
+  border: 1.5px solid rgba(255,255,255,0.12);
+  background:
+    linear-gradient(180deg,
+      rgba(255,255,255,0.18) 0%,
+      rgba(255,255,255,0.06) 35%,
+      rgba(255,255,255,0.02) 65%,
+      rgba(0,0,0,0.15) 100%
+    );
+  box-shadow:
+    0 4px 24px rgba(0,0,0,0.5),
+    inset 0 1px 0 rgba(255,255,255,0.2),
+    inset 0 -1px 0 rgba(255,255,255,0.05);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow: hidden;
+}
+
+/* Faixa de brilho diagonal passando */
+.chrome-btn::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -60%;
+  width: 40%;
+  height: 200%;
+  background: linear-gradient(
+    110deg,
+    transparent 0%,
+    rgba(255,255,255,0.12) 45%,
+    rgba(255,255,255,0.25) 50%,
+    rgba(255,255,255,0.12) 55%,
+    transparent 100%
+  );
+  transform: rotate(18deg);
+  transition: left 0.6s ease;
+  pointer-events: none;
+}
+
+.chrome-btn:hover::before {
+  left: 120%;
+}
+
+.chrome-btn:hover {
+  border-color: rgba(255,255,255,0.25);
+  box-shadow:
+    0 8px 32px rgba(0,0,0,0.6),
+    inset 0 1px 0 rgba(255,255,255,0.25),
+    0 0 24px rgba(255,255,255,0.06);
+  transform: translateY(-2px) scale(1.01);
+  color: #ffffff;
+}
+
+.chrome-btn:active {
+  transform: translateY(0) scale(0.99);
+  box-shadow: 0 2px 12px rgba(0,0,0,0.4);
+}
+
+/* Scrollbar customizada fina para formulários */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 4px;
+}
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+/* Honeypot anti-spam: esconde de forma que bots não detectem facilmente */
+.hp-field-wrap {
+  position: absolute;
+  left: -9999px;
+  top: -9999px;
+  opacity: 0;
+  height: 0;
+  width: 0;
+  overflow: hidden;
+}
+
+/* Animação fade-in simples */
+.animate-fade-in {
+  animation: fadeIn 0.3s ease-out forwards;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Animação fade-in-up */
+.animate-fade-in-up {
+  animation: fadeInUp 0.4s ease-out forwards;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ====== CARROSSEL TINDER-LIKE ANIMAÇÕES ====== */
+
+/* NEXT — card da esquerda sai deslizando pra esquerda */
+@keyframes carouselExitLeft {
+  from {
+    left: 0;
+    opacity: 1;
+    transform: rotate(0deg);
+  }
+  to {
+    left: -60%;
+    opacity: 0;
+    transform: rotate(-3deg);
+  }
+}
+
+/* NEXT — card da direita assume a posição da esquerda */
+@keyframes carouselShiftLeft {
+  from { left: calc(50% + 8px); }
+  to   { left: 0; }
+}
+
+/* NEXT — novo card entra pela direita */
+@keyframes carouselEnterRight {
+  from {
+    left: 70%;
+    opacity: 0;
+    transform: rotate(3deg);
+  }
+  to {
+    left: calc(50% + 8px);
+    opacity: 1;
+    transform: rotate(0deg);
+  }
+}
+
+/* PREV — card da direita sai deslizando pra direita */
+@keyframes carouselExitRight {
+  from {
+    left: calc(50% + 8px);
+    opacity: 1;
+    transform: rotate(0deg);
+  }
+  to {
+    left: 110%;
+    opacity: 0;
+    transform: rotate(3deg);
+  }
+}
+
+/* PREV — card da esquerda assume a posição da direita */
+@keyframes carouselShiftRight {
+  from { left: 0; }
+  to   { left: calc(50% + 8px); }
+}
+
+/* PREV — novo card entra pela esquerda */
+@keyframes carouselEnterLeft {
+  from {
+    left: -60%;
+    opacity: 0;
+    transform: rotate(-3deg);
+  }
+  to {
+    left: 0;
+    opacity: 1;
+    transform: rotate(0deg);
+  }
+}
+
+.carousel-card-exit-left {
+  animation: carouselExitLeft 0.4s cubic-bezier(0.4, 0, 0.6, 1) forwards;
+}
+.carousel-card-shift-left {
+  animation: carouselShiftLeft 0.4s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+.carousel-card-enter-right {
+  animation: carouselEnterRight 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+.carousel-card-exit-right {
+  animation: carouselExitRight 0.4s cubic-bezier(0.4, 0, 0.6, 1) forwards;
+}
+.carousel-card-shift-right {
+  animation: carouselShiftRight 0.4s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+.carousel-card-enter-left {
+  animation: carouselEnterLeft 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+
+/* Toast animação para erro de PDF */
+@keyframes pdfToastIn {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -12px);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, 0);
+  }
+}
