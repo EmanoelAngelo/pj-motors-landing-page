@@ -4,7 +4,7 @@ Criei esta experiência para aproximar a apresentação dos veículos elétricos
 
 **[Acessar a demonstração online](https://pj-motors-vercel-corrigido.vercel.app/)** · **Versões para computador e celular**
 
-Desenvolvi o projeto com apoio do Readdy na implementação da interface e da estrutura React. Trabalhei a proposta visual, a organização do catálogo, os caminhos de atendimento e os conteúdos audiovisuais. Gravei vídeos individuais dos equipamentos para mostrar detalhes que uma ficha técnica ou fotografia isolada não consegue transmitir.
+Trabalhei a proposta visual, a organização do catálogo, os caminhos de atendimento e os conteúdos audiovisuais. Gravei vídeos individuais dos equipamentos para mostrar detalhes que uma ficha técnica ou fotografia isolada não consegue transmitir.
 
 ## O problema que procurei resolver
 
